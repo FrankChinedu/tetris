@@ -192,6 +192,7 @@ Piece.prototype.lock = function (){
     //update the board
     drawBoard();
 
+    scoreElement.innerHTML = score;
 
 }
 
