@@ -1,6 +1,7 @@
 // 'use strick';
-const cvs = canvas  = document.getElementById('tetris');
-const ctx = context = cvs.getContext('2d');
+const cvs  = document.getElementById('tetris');
+const ctx  = cvs.getContext('2d');
+const scoreElement = document.getElementById("score");
 
 const ROW = 20;
 const COL = COLUMN = 10;
@@ -156,7 +157,7 @@ Piece.prototype.lock = function (){
     for (r = 0; r < this.activeTetromino.length; r++) {
         for (c = 0; c < this.activeTetromino.length; c++) {
             // we skip vacant squares
-            if (this.activeTetromino[r][c]) {
+            if (!this.activeTetromino[r][c]) {
                 continue;
             }
             if(this.y + r < 0){
@@ -166,8 +167,6 @@ Piece.prototype.lock = function (){
                 break; 
             }
             //we lock the piece
-            // console.log(this.y + r,this.x + c ,this.color);
-            // console.log(board)
             board[this.y + r][this.x + c] = this.color
         }
     }
@@ -221,6 +220,7 @@ Piece.prototype.collision = function (x,y, piece){
             }
         }
     }
+    return false;
 }
 
 document.addEventListener("keydown", control);
